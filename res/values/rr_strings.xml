@@ -18,7 +18,7 @@
     <string name="primary_component_title">Choose primary color</string>
     <string name="preview_name_primary">Primary color</string>
     <string name="preview_name_color_new">Accent color</string>
-    <string name="color_component_title_new">Choose accent color</string>
+    <string name="color_component_title_new">Tap on any color below and you will be taken to new accent picker. </string>
     <string name="no_options_message">No valid primary colors available</string>
     <string name="no_options_message_primary">No overlay available for current mode</string>
     <string name="no_options_message_default">No overlays available</string>

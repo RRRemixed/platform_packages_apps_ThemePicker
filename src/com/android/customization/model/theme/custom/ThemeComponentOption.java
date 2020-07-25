@@ -31,6 +31,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.Resources.Theme;
 import android.content.res.TypedArray;
+import android.content.Intent;
 import android.graphics.Path;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -42,6 +43,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -308,6 +310,9 @@ public abstract class ThemeComponentOption implements CustomizationOption<ThemeC
 
         private String mLabel;
 
+
+        private static final String SETTINGS_FRAG = "com.android.settings";
+        private static final String SETTINGS_ACTION = "com.android.settings.Settings$AccentColorSettingsActivity";
         ColorOption(String packageName, String label, @ColorInt int lightColor,
                 @ColorInt int darkColor) {
             addOverlayPackage(OVERLAY_CATEGORY_COLOR, packageName);
@@ -321,7 +326,16 @@ public abstract class ThemeComponentOption implements CustomizationOption<ThemeC
             @ColorInt int color = resolveColor(view.getResources());
             ((ImageView) view.findViewById(R.id.option_tile)).setImageTintList(
                     ColorStateList.valueOf(color));
+
             view.setContentDescription(mLabel);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent settings = new Intent(Intent.ACTION_MAIN);
+                    settings.setClassName(SETTINGS_FRAG, SETTINGS_ACTION);
+                    view.getContext().startActivity(settings);
+                }
+             });
         }
 
         @ColorInt
